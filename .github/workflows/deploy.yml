@@ -1,0 +1,27 @@
+name: Deploy AI Jobs Board
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Deploy to Railway
+        uses: railway-app/actions@v1
+        with:
+          token: ${{ secrets.RAILWAY_TOKEN }}
+          service: ai-jobs
+          
+      - name: Health Check
+        run: |
+          sleep 10
+          curl https://${{ secrets.RAILWAY_URL_JOBS }}/api/health || exit 1
+          
+      - name: Notify Success
+        if: success()
+        run: echo "✅ AI Jobs Board deployed successfully"

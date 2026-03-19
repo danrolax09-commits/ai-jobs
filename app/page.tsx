@@ -9,6 +9,7 @@ export default function Home() {
       type: 'Full-time',
       level: 'Senior',
       tags: ['LLMs', 'Python', 'PyTorch'],
+      featured: true,
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ export default function Home() {
       type: 'Full-time',
       level: 'Mid',
       tags: ['Agents', 'Node.js', 'TypeScript'],
+      featured: true,
     },
     {
       id: 3,
@@ -39,6 +41,7 @@ export default function Home() {
       type: 'Full-time',
       level: 'Mid',
       tags: ['Prompting', 'Research', 'Testing'],
+      featured: true,
     },
     {
       id: 5,
@@ -59,6 +62,27 @@ export default function Home() {
       type: 'Full-time',
       level: 'Mid',
       tags: ['Product', 'AI/ML', 'Strategy'],
+    },
+    {
+      id: 7,
+      title: 'Robotics AI Engineer',
+      company: 'Figure AI',
+      location: 'Remote',
+      salary: '$240K - $340K',
+      type: 'Full-time',
+      level: 'Senior',
+      tags: ['Robotics', 'Python', 'ROS'],
+      featured: true,
+    },
+    {
+      id: 8,
+      title: 'Vision Model Specialist',
+      company: 'Scale AI',
+      location: 'San Francisco, CA',
+      salary: '$210K - $290K',
+      type: 'Full-time',
+      level: 'Senior',
+      tags: ['Computer Vision', 'Python', 'TensorFlow'],
     },
   ];
 
@@ -98,9 +122,49 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Jobs */}
+      {/* Sponsored Tier Banner */}
+      <section style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white', padding: '2rem', borderRadius: '12px', margin: '2rem auto', maxWidth: '1000px' }}>
+        <h3 style={{ marginBottom: '0.5rem' }}>⭐ Featured Listings</h3>
+        <p style={{ opacity: 0.95 }}>$199/month gets 10x visibility. Your job at the top of feed + email spotlight.</p>
+        <button className="btn btn-secondary" style={{ marginTop: '1rem' }}>Upgrade to Featured</button>
+      </section>
+
+      {/* Featured Jobs (with featured flag) */}
       <section className="container">
-        <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>Featured Opportunities</h2>
+        <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>💼 Top Openings</h2>
+        <div className="grid">
+          {jobs.filter(j => j.featured).map((job) => (
+            <div key={job.id} className="job-card" style={{ borderTop: '3px solid #667eea' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '1rem' }}>
+                <div>
+                  <div className="job-title">{job.title}</div>
+                  <div className="company">{job.company}</div>
+                </div>
+                <span style={{ background: '#667eea', color: 'white', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.8rem' }}>Featured</span>
+              </div>
+              <div style={{ color: '#9ca3af', fontSize: '0.9rem' }}>
+                📍 {job.location}
+              </div>
+              <div className="price">{job.salary}</div>
+              <div className="job-meta">
+                <span className="badge">{job.type}</span>
+                <span className="badge">{job.level}</span>
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+                {job.tags.map((tag) => (
+                  <span key={tag} className="badge">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <button className="btn btn-primary" style={{ width: '100%' }}>
+                Apply Now →
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <h2 style={{ fontSize: '2rem', marginBottom: '2rem', marginTop: '3rem' }}>All Positions</h2>
         <div className="grid">
           {jobs.map((job) => (
             <div key={job.id} className="job-card">
