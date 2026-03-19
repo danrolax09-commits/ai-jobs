@@ -1,3 +1,4 @@
+import { STRIPE_PRICES, PRICING_TIERS } from '@/lib/pricing-config';
 export default function Home() {
   const jobs = [
     {
